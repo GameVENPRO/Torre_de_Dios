@@ -1,6 +1,6 @@
 # Torre de Dios
 
-[Torre de Dios"](https://t.me/TowerRPG_bot) es un próximo multijugador telegram RPG-bot!
+[Torre de Dios](https://t.me/TowerRPG_bot) es un próximo multijugador telegram RPG-bot!
 
 ## ¿Qué puede hacer este bot? (funcional)
 
