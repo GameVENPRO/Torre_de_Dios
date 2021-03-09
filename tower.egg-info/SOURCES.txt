@@ -4,6 +4,7 @@ app/__init__.py
 app/__main__.py
 app/config.py
 app/database/__init__.py
+app/database/abilities.py
 app/database/base.py
 app/database/db.py
 app/database/item.py
@@ -23,6 +24,7 @@ app/middlewares/__init__.py
 app/middlewares/devmode.py
 app/middlewares/register.py
 app/models/__init__.py
+app/models/abilities.py
 app/models/enemies.py
 app/models/examinators.py
 app/utils/__init__.py

@@ -1,41 +1,41 @@
 # text which will be printed in _bot: 139
-help_text = {'train': 'ЗАПОМНИТЕ перед тем как принять бой ПОСМОТРИТЕ на сложность моба\n\n'
-                      '<i>Чтобы выйти из этого меню и начать игру нажмите \"В игру\" или напишите боту любое сообщение</i>',
+help_text = {'train': 'RECUERDA antes de tomar la batalla MIRA la complejidad de la mafia\n\n'
+                      '<i>Para salir de este menú y comenzar el juego, haga clic en \"En el juego\" o escriba cualquier mensaje al bot</i>',
 
-             'desc': '<b>“Tower of God”</b> - это бот в телеграме, который поможет вам скоротать время в школе / метро / сортире🚬 \n'
-                     'Состояние: ЗБТ(Закрытое бета тестирование), для записи на тест обращаться к @likeeven ',
-             'other': '📌 Ссыль на бота: @TowerRPG_bot\n📌 Разработчик: @likeeven\n📌Новостной канал: @Tower_main\n📌Общение: @Tower_chat'}
+             'desc': '<b>“Torre de Dios”</b> - - este es un bot en el telegrama que le ayudará a pasar el tiempo en la escuela / metro / baño🚬 \n'
+                     'Estado: CBT (prueba beta cerrada), para escribir en la prueba, póngase en contacto con @likeevent',
+             'other': '📌 Enlace al bot: @TowerRPG_bot\n📌 Desarrollador: @likeevent\n📌Canal de noticias: @Tower_main\n📌Comunicación: @Tower_chat'}
 
-greetings = ['Что ты желаешь?', 'Богатство?', 'Славу?', 'Власть?', 'Отмщение?', 'Или что-то гораздо большее?',
-             'Все, что ты желаешь,', 'Находится <b>здесь</b>.']
+greetings = ['¿Qué estás haciendo?', '¿Riqueza?', '¿Gloria?', '¿Poder?', '¿Venganza?', '¿O algo mucho más grande?',
+             'Todo lo que haces,', 'Encuentra <b>aquí</b>.']
 
 # all of bot functions and it's description
-func_description = {"👤 Профиль": '👤 Отображает ваш статус, экипировку и другие характеристики',
-                    "⚔️ Бой": '⚔️ Бой - подбирает врага, характеристики и уровень сложности которого соответствуют уровню вашего персонажа. '
-                              'Сложность противника зависит от всех характеристик персонажа.',
-                    "💉 Исцеление": '💉 За небольшую цену востанавливает ваше здоровье',
-                    "📯 Повышение ранга": '📯 Тест для повышения ранга. Чем выше ранг, тем выше вы в рейтинге и тем сильнее ваши враги! Не рекомендуется проходить без подготовки!',
-                    "💼 Инвентарь": '💼 Инвентарь - отображает список предметов в инвентаре, также даёт возможность посмотреть характеристики этих предметов',
-                    "📥 Надеть экипировку": '📥 Надеть экипировку - даёт возможность надеть экипировку которая есть у вас в инвентаре. Надеть экипировку можно нажав на кнопку "Надеть экипировку" и ввести название предмета с учётом регистра(A-a). ',
-                    "📤 Снять экипировку": '📤 Снять экипировку - выводит меню с информацией о том, какая экипировка на данный момент надета. '
-                                           'Как понятно из названия кнопки - с помощью этого меню можно снимать экипировку',
-                    "🥋 Экипировка": '🥋 В этом меню вы можете управлять экипировкой',
-                    "⚖️ Повышение характеристик": '⚖️ С повышением уровня вы получаете очки повышений, за них вы можете напрямую повышать ваши характеристики',
-                    "⚒ Крафт": '⚒ Крафт - улучшения предметов путём их слияния, т.е. если у вас есть два одинаковых предмета - '
-                               'вы можете скрафтить из них такой же рангом выше. Улучшенную экипировку нельзя будет раскрафтить обратно',
-                    "🔈 Помощь": '🔈 Вы здесь',
-                    "🛒 Магазин": '🛒 IN DEVELOPMENT'}
+func_description = {"👤 Perfil": '👤 Muestra su estado, equipo y otras características',
+                    "⚔️ Combate": '⚔️ Combate: recoge al enemigo, cuyas características y nivel de dificultad corresponden al nivel de tu personaje. '
+                              'La dificultad del enemigo depende de todas las características del personaje.',
+                    "💉 Curación": '💉 Por un pequeño precio restaura su salud',
+                    "📯 Ascenso de rango": '📯 Prueba para subir de rango. ¡Cuanto más alto sea el rango, más alto serás en el ranking y más fuertes serán tus enemigos! ¡No se recomienda pasar sin preparación!',
+                    "💼 Inventario": '💼 Inventario-muestra una lista de artículos en el inventario, también le da la oportunidad de ver las características de estos artículos',
+                    "📥 Ponerse el atuendo": '📥 Poner el equipo-le da la oportunidad de poner el equipo que tiene en el inventario. Puede usar el equipo haciendo clic en el botón "Usar equipo" y escribiendo el nombre del artículo con mayúsculas y minúsculas(A-a). ',
+                    "📤 Retirar el equipo": '📤 Desmontar el equipo: muestra un menú con información sobre qué equipo está usando actualmente. '
+                                           'Como está claro en el nombre del botón, con este menú puede quitar el equipo',
+                    "🥋 Equipamiento": '🥋 En este menú se puede controlar el equipo',
+                    "⚖️ Mejorar las características": '⚖️ A medida que subes de nivel, obtienes puntos de aumento, para ellos puedes aumentar directamente tus estadísticas',
+                    "⚒ Kraft": '⚒ Mejora los artículos al fusionarlos, es decir, si tienes dos artículos idénticos - '
+                                'usted puede crear de ellos el mismo rango anterior. El equipo mejorado no se puede pintar de nuevo',
+                    "🔈 Asistencia": '🔈 Estás aquí.',
+                    "🛒 Tienda": '🛒 EN DESARROLLO'}
 
 
-what_is_healing = ('❓ <b>Вы уверены что хотите войти в лазарет?</b>\n\n❔ Что такое лазарет?\n <i> -  Лазарет - это место где ваш персонаж "отдыхает" и восстанавливается после тяжёлых скитаний. '
-                   'Каждые 5 минут пребывания в лазарете регенерируют +1 здоровье/защиту.</i>\n\n❔ Какие ограничения?\n <i> -  Большая часть игрового функционала будет недоступна. (выйти можно в любой момент)</i>')
+what_is_healing = ('❓ <b>¿Estás seguro de que quieres entrar en la enfermería?</b>\n\n❔ ¿Qué es la enfermería?\n <i>- La enfermería es un lugar donde tu personaje "descansa" y se recupera de vagar duro. '
+                   'Cada 5 minutos de estancia en la enfermería se regenera + 1 salud / protección.</i>\n\n❔¿Cuáles son las limitaciones?\n <i>- La mayor parte de la funcionalidad del juego no estará disponible. (puedes salir en cualquier momento)</i>')
 
-healing_text = ('❕ Вы начали восстановление в лазарете!\n\n<i>'
-                ' - Об каждой регенерирации бот будет отправлять сообщение (без звука), а по завершении оповестит вас уведомлением\n'
-                ' -  Имейте ввиду что после тех.работ в боте вы автоматически покинете лазарет.</i>')
+healing_text = ('❕ ¡Has comenzado la recuperación en la enfermería!\n\n<i>'
+                '- Sobre cada regeneración, el bot enviará un mensaje (sin sonido) y, al finalizar, le avisará con una notificación\n'
+                '- Tenga en cuenta que después de esos trabajos en el bot, saldrá automáticamente de la enfermería.</i>')
 
-ABILITIES = {1: 'Боги благосклонны к вам сегодня,\n использовав эту способность пресвятая\n сила полностью восстанавливает ваше\n здоровье!'}
+ABILITIES = {1: 'Los dioses te apoyan hoy,\n usando esta habilidad el Santísimo\n el poder restaura completamente tu\n salud!'}
 
 
-MOB_NAMES = ('Гоблин', 'Слизь', 'Демон', 'Гном', 'Паучек', 'Воин-Скелет',
-             'Рыцарь-Скелет', 'Страж-Скелет', 'Орк', 'Скелет', 'Лучник-Скелет')
+MOB_NAMES = ('Goblin', 'Moco', 'Demonio', 'Gnomo', 'Araña', 'Guerrero Esqueleto',
+             'Caballero Esqueleto', 'Guardián Esqueleto', 'Orco', 'Esqueleto', 'Arquero Esqueleto')

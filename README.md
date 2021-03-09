@@ -1,21 +1,21 @@
-# Tower-of-God
+# Torre de Dios
 
-[Tower of God"](https://t.me/TowerRPG_bot) is an upcoming multiplayer telegram RPG-bot!
+[Torre de Dios"](https://t.me/TowerRPG_bot) es un próximo multijugador telegram RPG-bot!
 
-## What this bot can do? (functional)
+## ¿Qué puede hacer este bot? (funcional)
 
-- Profile 
-- Inventory 
-- Outfit 
-- Performance enhancement 
+- Perfil 
+- Inventario 
+- Traje 
+- Mejora del rendimiento 
 - PVE vs mobs 
-- Battle to rank up 
-- Healing Potions 
-- Crafting
-- Drop from mobs 
-- Balance 
-- Level system 
-- Rank system 
-- Examiners
-- Mobs
-- 100+ items
+- Batalla para subir de rango 
+- Pociones Curativas 
+- Elaboración
+- La caída de las turbas 
+- Equilibrio 
+- Sistema de nivel 
+- Sistema de rangos 
+- Examinador
+- Turba
+- Más de 100 artículos

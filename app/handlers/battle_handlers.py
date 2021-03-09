@@ -28,7 +28,7 @@ async def pve_rankup(m: Message, state: FSMContext, user: User):
     if user.health > 0:
         await MainStates.battle.set()
         async with state.proxy() as data:
-            trash = await m.answer('⏳ <i>Башня готовит вам экзаменатора..</i>',
+            trash = await m.answer('⏳ <i>La torre te prepara para el examinador..</i>',
                                 reply_markup=ReplyKeyboardMarkup(resize_keyboard=True).add(KeyboardButton('~')))
             await ChatActions().typing(sleep=randint(1, 4))
             
@@ -37,7 +37,7 @@ async def pve_rankup(m: Message, state: FSMContext, user: User):
             data['enemy'] = exam_choose(user)
             await m.reply('=============================', reply_markup=PVE_LEAVE_Kb())
             
-            if data['enemy'] != '❕ Максимальный ранг!':
+            if data['enemy'] != '❕ Rango máximo!':
                 diff = set_difficulty(data['enemy'].power, power(user))
                 data['msg'] = await m.answer(text=rankup_text(data['enemy'], user, diff), reply_markup=CONFIRM_BATTLE_Kb())
             else:
@@ -45,14 +45,14 @@ async def pve_rankup(m: Message, state: FSMContext, user: User):
                 await state.reset_state()
                 await m.answer(text=data['enemy'], reply_markup=IDLE_Kb())
     else:
-        await m.answer(text="❗ Ты мёртв...")
+        await m.answer(text="❗ Estás muerto...")
 
 
 async def pve_battle(m: Message, state: FSMContext, user: User):
     if user.health > 0:
         await MainStates.battle.set()
         async with state.proxy() as data:
-            trash = await m.answer('⏳ <i>Башня ищет вам противника..</i>',
+            trash = await m.answer('⏳ <i>La torre está buscando un enemigo..</i>',
                                    reply_markup=ReplyKeyboardMarkup(resize_keyboard=True).add(KeyboardButton('~')))
             await ChatActions().typing(sleep=randint(1, 4))
             raw_enemy = enemy_calc(user.damage, user.health, user.defence, user.lvl)
@@ -65,31 +65,31 @@ async def pve_battle(m: Message, state: FSMContext, user: User):
             data['msg'] = await m.answer(text=meet_enemy_text(data['enemy'], set_difficulty(power(data['enemy']), power(user))),
                                          reply_markup=CONFIRM_BATTLE_Kb())
     else:
-        await m.answer(text="❗ Ты мёртв...")
+        await m.answer(text="❗ Estás muerto...")
 
 
 async def pve_confirmed(c: CallbackQuery, state: FSMContext):
     async with state.proxy() as data:
-        await data['msg'].edit_text('⏳ <i>Башня готовит поле боя..</i>')
+        await data['msg'].edit_text('⏳ <i>La torre prepara el campo de batalla..</i>')
         await ChatActions().typing(sleep=randint(1, 4))
 
-        await data['msg'].edit_text(text="⚔️ Выбери действие:", reply_markup=BATTLE_MENU_Kb("🛡 Защищаться", "defence_menu", False))
+        await data['msg'].edit_text(text="⚔️ Elige una acción:", reply_markup=BATTLE_MENU_Kb("🛡 Defenderse", "defence_menu", False))
 
  
 async def pve_attack_menu(c: CallbackQuery, state: FSMContext, user: User):
     async with state.proxy() as data:
         if c.message.message_id == data['msg'].message_id:
-            await data['msg'].edit_text(text='🗡 Выберите место которое хотите атаковать:', reply_markup=ATTACK_Kb())
+            await data['msg'].edit_text(text='🗡 Elija el lugar que desea atacar:', reply_markup=ATTACK_Kb())
         else:
-            await c.message.edit_text("❗ Данный бой потерял актуальность")
+            await c.message.edit_text("❗ Esta batalla perdió relevancia")
 
 
 async def pve_defence_menu(c: CallbackQuery, state: FSMContext, user: User):
     async with state.proxy() as data:
         if c.message.message_id == data['msg'].message_id:
-            await data['msg'].edit_text(text='🗡 Выберите место которое хотите защищать:', reply_markup=DEFENCE_Kb())
+            await data['msg'].edit_text(text='🗡 Elija el lugar que desea proteger:', reply_markup=DEFENCE_Kb())
         else:
-            await c.message.edit_text("❗ Данный бой потерял актуальность")
+            await c.message.edit_text("❗ Esta batalla perdió relevancia")
 
 
 # 'abilities_menu_'
@@ -99,12 +99,12 @@ async def pve_abilities(c: CallbackQuery, state: FSMContext, user: User, step=No
             if user.abilities:
                 mode = c.data[15:18] if not step else step
                 abilities = [await Ability.get(x) for x in user.abilities if await Ability.get(x)]
-                await data['msg'].edit_text(text='🎴 Доступные способности:', 
+                await data['msg'].edit_text(text='🎴 Habilidades disponibles:', 
                                             reply_markup=ABILITIES_Kb(abilities=abilities, battle=True, attack=True if mode == 'atk' else False))
             else:
-                await c.answer(text='❗ У вас нету способностей', show_alert=True)
+                await c.answer(text='❗ No tienes habilidades', show_alert=True)
         else:
-            await c.message.edit_text("❗ Данный бой потерял актуальность")
+            await c.message.edit_text("❗ Esta batalla perdió relevancia")
 
 
 # 'battle_ability_'
@@ -124,12 +124,12 @@ async def pve_attack(c: CallbackQuery, state: FSMContext, user: User):
             pre_health, pre_defence = data['enemy'].health, data['enemy'].defence  # stats before pve'ing
             # user's dealing damage to mob:
             data['enemy'].health, data['enemy'].defence = await battle_attack(0, randint(0, 3), user, data['enemy'], call=c)
-            data['results'].append(f"🗡 \"{data['enemy'].name}\" - ♥:{data['enemy'].health}(-{(pre_health-data['enemy'].health) if (pre_health-data['enemy'].health)!=0 else 'miss'}) | "
-                                   f"🛡:{data['enemy'].defence}(-{(pre_defence-data['enemy'].defence) if (pre_defence-data['enemy'].defence)!=0 else 'miss'})")
+            data['results'].append(f"🗡 \"{data['enemy'].name}\" - ♥:{data['enemy'].health}(-{(pre_health-data['enemy'].health) if (pre_health-data['enemy'].health)!=0 else 'fallaste'}) | "
+                                   f"🛡:{data['enemy'].defence}(-{(pre_defence-data['enemy'].defence) if (pre_defence-data['enemy'].defence)!=0 else 'fallaste'})")
             await c.answer(text=data['results'][-1], show_alert=True)
             if data['enemy'].health > 0:  # if user still alive:
                 # next step:
-                await data['msg'].edit_text(text="⚔️ Выбери действие:", reply_markup=BATTLE_MENU_Kb("🛡 Защищаться", "defence_menu", False))
+                await data['msg'].edit_text(text="⚔️ Elige una acción:", reply_markup=BATTLE_MENU_Kb("🛡 Defenderse", "defence_menu", False))
             else: # if dead:
                 try:
                     if hasattr(data['enemy'], 'bonus'):  # if not examinator (examinators have no bonuses):
@@ -137,7 +137,7 @@ async def pve_attack(c: CallbackQuery, state: FSMContext, user: User):
                             await data['msg'].edit_text('\n'.join(data['results']))
 
                         await c.message.answer('=============================')
-                        await c.answer("☠️ Враг умер")
+                        await c.answer("☠️ El enemigo murió")
                         total_xp = get_xp(user.lvl)
                         try:
                             if user.xp + data['enemy'].bonus >= total_xp:
@@ -148,16 +148,16 @@ async def pve_attack(c: CallbackQuery, state: FSMContext, user: User):
                                                   lvl=user.lvl+lvl_increase).apply()
                                 # encouraging user:
                                 await c.message.answer(
-                                    text=f"🎊 Вы получили +{data['enemy'].bonus}<i>XP</i>, в связи с чем ваш уровень повышен!\n"
-                                         f"<i>Вам засчитано (3) очки повышения.</i>", reply_markup=PROFILE_Kb())
+                                    text=f"🎊 Usted recibió +{data['enemy'].bonus}<i>XP</i>, en este sentido, su nivel es elevado!\n"
+                                         f"<i>Usted cuenta (3) puntos de mejora.</i>", reply_markup=PROFILE_Kb())
                             else:
                                 # encouraging user:
                                 await user.update(health=user.health, defence=user.defence, xp=user.xp+data['enemy'].bonus).apply()
-                                await c.message.answer(text=f"✨ Вы получили +{data['enemy'].bonus} <i>XP</i>!", reply_markup=IDLE_Kb())
+                                await c.message.answer(text=f"✨ Usted recibió +{data['enemy'].bonus} <i>XP</i>!", reply_markup=IDLE_Kb())
                         finally:
                             await user.update(balance=user.balance + round(data['enemy'].bonus / 2)).apply()
                             # encouraging user:
-                            await c.message.answer(text=f"💰 Вы получили +{round(data['enemy'].bonus / 2)} <i>мoнет</i>!")
+                            await c.message.answer(text=f"💰 Usted recibió +{round(data['enemy'].bonus / 2)} <i>monedas</i>!")
                             if item_drop(data['enemy'].drop_chance) is True:
                                 drop_list = await Item.query.where(and_(Item.rank == user.rank, Item.quality == 'Common')).gino.all()
                                 if drop_list:
@@ -165,10 +165,10 @@ async def pve_attack(c: CallbackQuery, state: FSMContext, user: User):
                                     user.inventory.append(dropped_item.id)
                                     await user.update(inventory=user.inventory).apply()
                                     # encouraging user:
-                                    await c.message.answer(f"❗ Вам выпал предмет: \n\"{dropped_item.name}\".\n"
-                                                             f"<i>Предмет помещён в ваш инвентарь</i>")
+                                    await c.message.answer(f"❗ Te cayó un objeto.: \n\"{dropped_item.name}\".\n"
+                                                             f"<i>El artículo se coloca en su inventario</i>")
                                 else:
-                                    c.message.answer('❗ Ёпрст, ваш ранг выше чем ранг существующего оружия.')
+                                    c.message.answer('❗ Eprst, su grado es más alto que el grado del arma existente.')
                     else:
                         with suppress(MessageCantBeEdited):
                             await data['msg'].edit_text('\n'.join(data['results']))
@@ -176,13 +176,13 @@ async def pve_attack(c: CallbackQuery, state: FSMContext, user: User):
                         await user.update(rank=data['enemy'].rank, level_points=user.level_points+5).apply()
                         # encouraging user:
                         await c.message.answer(
-                            f"🎊 Вы победили экзаменатора! Поздравляем, теперь ваш ранг - {data['enemy'].rank}. "
-                            f"<i>Вам засчитано (5) очков повышения.</i>", reply_markup=STATS_INC_Kb())
+                            f"🎊 ¡Has derrotado al examinador! Felicitaciones, ahora su rango - {data['enemy'].rank}. "
+                            f"<i>Se le otorgan (5) puntos de ascenso.</i>", reply_markup=STATS_INC_Kb())
                 finally:
                     await state.reset_state()
                     await state.reset_data()
         else:
-            await c.message.edit_text("❗ Данный бой потерял актуальность")
+            await c.message.edit_text("❗ Esta batalla perdió relevancia")
 
 
 async def pve_defence(c: CallbackQuery, state: FSMContext, user: User):
@@ -192,13 +192,13 @@ async def pve_defence(c: CallbackQuery, state: FSMContext, user: User):
             pre_health, pre_defence = user.health, user.defence  # stats before pve'ing
             # mob's dealing damage to user:
             user.health, user.defence = await battle_defence(0, randint(0, 3), user, data['enemy'], call=c)
-            data['results'].append(f"⚔️ \"{user.username}\" - ♥:{user.health}(-{(pre_health-user.health) if (pre_health-user.health)!=0 else 'miss'}) | "
-                                   f"🛡:{user.defence}(-{(pre_defence-user.defence) if (pre_defence-user.defence)!=0 else 'miss'})")
+            data['results'].append(f"⚔️ \"{user.username}\" - ♥:{user.health}(-{(pre_health-user.health) if (pre_health-user.health)!=0 else 'fallaste'}) | "
+                                   f"🛡:{user.defence}(-{(pre_defence-user.defence) if (pre_defence-user.defence)!=0 else 'fallaste'})")
             await c.answer(text=data['results'][-1], show_alert=True)                    
             if user.health > 0: # if user still alive:
                 await user.update(health=user.health, defence=user.defence).apply() 
                 # next step:
-                await data['msg'].edit_text(text="⚔️ Выбери действие:", reply_markup=BATTLE_MENU_Kb("🗡 Атаковать", "attack_menu", True))
+                await data['msg'].edit_text(text="⚔️ Elige una acción:", reply_markup=BATTLE_MENU_Kb("🗡 Atacar", "attack_menu", True))
             else: # if dead:
                 try:
                     if hasattr(data['enemy'], 'bonus'):  # if not examinator (examinators have no bonuses):
@@ -208,20 +208,20 @@ async def pve_defence(c: CallbackQuery, state: FSMContext, user: User):
                         await user.update(health=1, defence=0, xp=user.xp - data['enemy'].bonus if user.xp - data['enemy'].bonus > 0 else -1, 
                                         balance=(user.balance - data['enemy'].bonus // 2 if user.balance - data['enemy'].bonus // 2 > 0 else -1) if user.lvl>2 else user.balance).apply()
                         # encouraging user:
-                        await c.message.answer(text="☠️ Ты проиграл, потерял опыт и деньги, а ещё у тебя 1 хп! Не сдавайся!", reply_markup=IDLE_Kb())
-                        logging.info(f"{user.username} умер")
+                        await c.message.answer(text="☠️ ¡Perdiste, perdiste experiencia y dinero, y también tienes 1 HP! No te rindas!", reply_markup=IDLE_Kb())
+                        logging.info(f"{user.username} murio")
                     else:
                         with suppress(MessageCantBeEdited):
                             await data['msg'].edit_text('\n'.join(data['results']))
                         await c.message.answer('=============================')
                         await user.update(health=1, defence=0).apply()
                         # encouraging user:
-                        await c.message.answer(text="❗ Экзамен провален!", reply_markup=IDLE_Kb())
+                        await c.message.answer(text="❗ ¡El examen falló!", reply_markup=IDLE_Kb())
                 finally:
                     await state.reset_state()
                     await state.reset_data()
         else:
-            await c.message.edit_text("❗ Данный бой потерял актуальность")
+            await c.message.edit_text("❗ Esta batalla perdió relevancia")
 
 
 async def pve_leave_battle(m: Message, state: FSMContext, user: User):
@@ -234,7 +234,7 @@ async def pve_leave_battle(m: Message, state: FSMContext, user: User):
                 await m.answer('============================')
                 await user.update(xp=user.xp - data['enemy'].bonus // 2 if user.xp - data['enemy'].bonus // 2 > 0 else -1).apply()
                 await m.answer(
-                    text=f"☠️ <i>Башня зарегистрировала твоё поражение\n Опыт понижен на {data['enemy'].bonus // 2}XP</i>", reply_markup=IDLE_Kb())
+                    text=f"☠️ <i>La torre registró tu derrota\n Experiencia degradada a {data['enemy'].bonus // 2}XP</i>", reply_markup=IDLE_Kb())
             except KeyError:
                 return
             finally:

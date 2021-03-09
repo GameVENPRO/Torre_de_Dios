@@ -1,9 +1,11 @@
 import logging
 from contextlib import suppress
+from math import fabs
 
 from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery, Message, ReplyKeyboardRemove
-from aiogram.utils.exceptions import MessageToDeleteNotFound, MessageToEditNotFound
+from aiogram.utils.exceptions import (MessageToDeleteNotFound,
+                                      MessageToEditNotFound)
 
 from app.__main__ import bot
 
@@ -23,7 +25,7 @@ async def gear_info_check(m: Message):
         else:
             with suppress(MessageToDeleteNotFound):
                 await m.delete()
-            await m.answer('❗ Такого предмета не существует') 
+            await m.answer('❗ Tal objeto no existe') 
     except ValueError:
         return
     
@@ -46,13 +48,13 @@ async def gear_equip(c: CallbackQuery, user: User):
                 await user.update(weapon=gear.id).apply() if gear.item_class == 'weapon' else await user.update(armor=gear.id).apply()
                     
                 await c.message.delete()
-                await c.message.answer(text="❕ Вы надели экипировку", reply_markup=IDLE_Kb())
+                await c.message.answer(text="❕ Te has puesto el equipo.", reply_markup=IDLE_Kb())
             else:
                 await c.message.delete()
-                await c.message.answer(text="❗ Сначала снимите экипировку", reply_markup=EQUIPMENT_Kb())
+                await c.message.answer(text="❗ Retire el equipo primero", reply_markup=EQUIPMENT_Kb())
         else:
             await c.message.delete()
-            await c.message.answer(text="❗ У вас нету такого предмета", reply_markup=IDLE_Kb())
+            await c.message.answer(text="❗ Usted no tiene tal artículo", reply_markup=IDLE_Kb())
     
 
 
@@ -65,11 +67,11 @@ async def gear_unequip(m: Message, user: User):
                 gear = await Item.get(eq[i])
                 data.extend([gear.name, gear.id])
             else:
-                data.extend(['- Пусто -', 'empty'])
-        await m.answer('❔ Выбери какую экипировку снимать:',
+                data.extend(['- Está vacío -', 'empty'])
+        await m.answer('❔ Elige qué equipo disparar:',
                        reply_markup=UNDRESS_Kb(data))
     else:
-        await m.answer('❗ У тебя нету экипировки', reply_markup=IDLE_Kb())
+        await m.answer('❗ No tienes equipo.', reply_markup=IDLE_Kb())
 
 
 async def gear_unequip_query(c: CallbackQuery, user: User):
@@ -84,11 +86,11 @@ async def gear_unequip_query(c: CallbackQuery, user: User):
 
         with suppress(MessageToDeleteNotFound):
             await c.message.delete()
-        await c.message.answer(f"❕ Вы сняли \"{gear.name}\"", reply_markup=IDLE_Kb())
+        await c.message.answer(f"❕ Usted filmó \"{gear.name}\"", reply_markup=IDLE_Kb())
     else:
         with suppress(MessageToDeleteNotFound):
             await c.message.delete()
-        await c.message.answer('❗ У тебя нету экипировки', reply_markup=IDLE_Kb())
+        await c.message.answer('❗ No tienes equipo.', reply_markup=IDLE_Kb())
 
 
 async def gear_craft(m: Message, user: User):
@@ -102,11 +104,11 @@ async def gear_craft(m: Message, user: User):
                     for _ in range(y):
                         raw.append(raw_items)
             print(inv, '|', raw_items, '|', raw)
-            await m.answer(text='🧳❕ Выберите какую пару предметов крафтить:', reply_markup=CRAFT_Kb(raw))
+            await m.answer(text='🧳❕ Elija qué par de artículos para elaborar:', reply_markup=CRAFT_Kb(raw))
         else:
-            await m.answer(text='❗ У вас нету подходящих предметов', reply_markup=IDLE_Kb())
+            await m.answer(text='❗ No tienes los artículos adecuados', reply_markup=IDLE_Kb())
     else:
-        await m.answer(text='❗ Инвентарь пуст', reply_markup=IDLE_Kb())
+        await m.answer(text='❗ Inventario vacío', reply_markup=IDLE_Kb())
 
 
 async def gear_craft_query(c: CallbackQuery, user: User):
@@ -118,7 +120,7 @@ async def gear_craft_query(c: CallbackQuery, user: User):
             else:
                 with suppress(MessageToDeleteNotFound):
                     await c.message.delete()
-                await c.message.answer('❕ В вашем инвентаре больше нету такого предмета', reply_markup=IDLE_Kb())
+                await c.message.answer('❕ Ya no hay tal artículo en su inventario', reply_markup=IDLE_Kb())
                 return
 
         craft_result = await Item.get(curr_gear.id + 1)
@@ -128,23 +130,23 @@ async def gear_craft_query(c: CallbackQuery, user: User):
             with suppress(MessageToDeleteNotFound):
                 await c.message.delete()
             await c.message.answer(
-                text=f"❕ Вы успешно скрафтили предмет:\n\n{gear_info_text(craft_result)}",
+                text=f"❕ Has creado con éxito el artículo:\n\n{gear_info_text(craft_result)}",
                 reply_markup=IDLE_Kb())
         else:
             with suppress(MessageToDeleteNotFound):
                 await c.message.delete()
-            await c.message.answer('❗ Предметы уже максимального качества', reply_markup=IDLE_Kb())
+            await c.message.answer('❗ Artículos ya de máxima calidad', reply_markup=IDLE_Kb())
     else:
         with suppress(MessageToDeleteNotFound):
             await c.message.delete()
-        await c.message.answer('<b>Error:</b> Broken item (Свяжитесь с администрацией)', reply_markup=IDLE_Kb())
+        await c.message.answer('<b>Error:</b> Broken item (Póngase en contacto con el establecimiento)', reply_markup=IDLE_Kb())
         raise NameError("Broken item")
 
 
 async def gear_sell_confirm(c: CallbackQuery, user: User):
-    await c.message.edit_text(f'💸 <b>Продажа предмета.</b>\n\n<i>  - Продажа предмета осуществляется между игроками, без участия администрации. Советуем ставить разумную цену\n\n'
-                              f'  - Продавая предмет вы не получите прибыль <u>моментально</u>! Вы лишь регистрируете его \"в очередь\" где другие пользователи могут купить его. </i>',
-                              reply_markup=CONFIRM_Kb(text=('💸 Продолжить', '🔚 Отменить'), callback=f'sell_register_{c.data[5:]}'))
+    await c.message.edit_text(f'💸 <b>Venta de artículos.</b>\n\n<i>  - La venta del artículo se realiza entre los jugadores, sin la participación de la administración. Sugerir poner un precio razonable\n\n'
+                              f'  - La venta de un artículo que no obtendrá un beneficio<u>en un momento</u>! Sólo lo registra.\"a la cola\" donde otros usuarios pueden comprarlo.</i>',
+                              reply_markup=CONFIRM_Kb(text=('💸 Continuar', '🔚 Cancelar'), callback=f'sell_register_{c.data[5:]}'))
 
 
 
@@ -154,8 +156,8 @@ async def gear_sell_register(c: CallbackQuery, user: User, state: FSMContext):
         await MainStates.selling.set()
         with suppress(MessageToDeleteNotFound):
             await c.message.delete()
-        trash = await c.message.answer('❔ <b>Как зарегистрировать предмет:</b>\n\n<i>  - На данном этапе всё просто ведь Башня делает почти всё за вас, '
-                                       'вам же нужно отправить боту <u>стоимость</u> предмета</i>. \n\nПример: '
+        trash = await c.message.answer('❔ <b>Cómo registrar un artículo:</b>\n\n<i>  - En esta etapa, todo es simple porque la Torre hace casi todo por TI, '
+                                       'tienes que enviar el bot <u>costo</u> objeto</i>. \n\nEjemplo: '
                                        '\"999\"', reply_markup=ReplyKeyboardRemove())
         async with state.proxy() as data:
             data['sell_item'] = item
@@ -163,7 +165,7 @@ async def gear_sell_register(c: CallbackQuery, user: User, state: FSMContext):
     else:
         with suppress(MessageToDeleteNotFound):
             await c.message.delete()
-        await c.message.answer('<b>Error:</b> Broken item (Свяжитесь с администрацией)', reply_markup=IDLE_Kb())
+        await c.message.answer('<b>Error:</b> Broken item (Póngase en contacto con el establecimiento)', reply_markup=IDLE_Kb())
         raise NameError("Broken item")
 
 
@@ -172,20 +174,20 @@ async def gear_sell_registered(m: Message, user: User, state: FSMContext):
         item = data['sell_item']
         trash = data['trash']
     try:
-        request = await Shop.create(item_id=item.id, item=item.name, rank=item.rank, price=int(m.text), user_id=user.id)
+        request = await Shop.create(item_id=item.id, item=item.name, rank=item.rank, price=int(fabs(int(m.text))), user_id=user.id)
         # removing from the inventory
         user.inventory.remove(request.item_id)
         await m.delete()
         with suppress(MessageToDeleteNotFound):
             await trash.delete()
-            await m.answer(text=f'❕ Лот №{request.id} на продажу создан:\n\n{request.item}: /{request.item_id}\n'
-                                f'🏆 Ранг предмета: {request.rank}\n💸 Цена: {request.price}', reply_markup=IDLE_Kb())
+            await m.answer(text=f'❕ Lote №{request.id} en venta creado:\n\n{request.item}: /{request.item_id}\n'
+                                f'🏆 Grado del objeto: {request.rank}\n💸 Precio: {request.price}', reply_markup=IDLE_Kb())
         await user.update(inventory=user.inventory).apply()
     except (ValueError):
         await m.delete()
         with suppress(MessageToDeleteNotFound):
             await trash.delete()
-            await m.answer(text='❗️ Вы не ввели число.', reply_markup=IDLE_Kb())
+            await m.answer(text='❗️ No ha introducido un número.', reply_markup=IDLE_Kb())
     finally:
         await state.reset_data()
         await state.reset_state()

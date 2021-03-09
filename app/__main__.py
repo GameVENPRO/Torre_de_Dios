@@ -24,20 +24,20 @@ async def startup(_):
 
     from app.database.db import connect
     await connect()
-    logging.info("*Database was connected.")
+    logging.info("*La base de datos estaba conectada.")
 
     from app.middlewares import RegisterMiddleware, DevelopmentMiddleware
     dp.middleware.setup(DevelopmentMiddleware())
     dp.middleware.setup(RegisterMiddleware())
-    logging.info("*All middlewares were configured.")
+    logging.info("*Se configuraron todos los middlewares.")
 
     from app import handlers
     handlers.setup(dp)
-    logging.info("*All handlers were configured.")
+    logging.info("*Todos los handlers(controladores) fueron configurados")
 
 
 async def shutdown(_):
-    logging.info("*Database was disconnected.")
+    logging.info("*La base de datos fue desconectada.")
     from app.database.db import disconnect
     await disconnect()
 

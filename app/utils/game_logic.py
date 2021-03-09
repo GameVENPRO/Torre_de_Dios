@@ -5,7 +5,7 @@ import math
 
 async def battle_attack(x, y, u, e, call):
     if x == y:
-        await call.answer("❗ Противник увернулся от удара", show_alert=True)
+        await call.answer("❗ El oponente esquivó el golpe", show_alert=True)
         return e.health, e.defence
     else:
         if e.defence <= 0:
@@ -24,7 +24,7 @@ async def battle_attack(x, y, u, e, call):
 
 async def battle_defence(x, y, u, e, call):
     if x == y:
-        await call.answer("❗ Ты увернулся от удара", show_alert=True)
+        await call.answer("❗ Esquivaste el golpe.", show_alert=True)
         return u.health, u.defence
     else:
         if u.defence <= 0:
@@ -58,24 +58,24 @@ def exam_choose(user):
             try:
                 return exams[i + 1]
             except IndexError:
-                return 'Максимальный ранг!'
+                return 'Rango máximo!'
 
 
 def set_difficulty(m, u):
     if m * 3 <= u:
-        difficulty = 'Оч. легко'
+        difficulty = 'Och. Es fácil'
     elif m * 2.5 <= u:
-        difficulty = 'Легко'
+        difficulty = 'Es fácil'
     elif m * 2 < u:
-        difficulty = 'Нормально'
+        difficulty = 'Normalmente'
     elif m * 1.5 < u:
-        difficulty = 'Сложно'
+        difficulty = 'Es complicado'
     elif m < u:
-        difficulty = 'Очень сложно'
+        difficulty = 'Muy difícil'
     elif m > u * 3:
-        difficulty = 'Верная смерть'
+        difficulty = 'Muerte segura'
     elif m >= u:
-        difficulty = 'Невозможно'
+        difficulty = 'Es imposible'
     else:
         return
     return difficulty
