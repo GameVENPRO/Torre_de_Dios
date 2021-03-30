@@ -120,8 +120,6 @@ async def admin_commands(m: Message):
         count, user_count = await broadcaster(text=text[1], disable_notification=False if text[0] == '!broadcast' else True)
         await m.reply(f'❕ Su mensaje recibido {count}/{user_count} usuario / ella.')
 
-
-
 async def admin_get_handler(m: Message, state: FSMContext):
     if m.forward_from:
         result = await User.get(m.forward_from)

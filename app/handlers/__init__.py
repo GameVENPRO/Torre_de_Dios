@@ -32,15 +32,39 @@ def setup(dp: Dispatcher):
     dp.register_errors_handler(errors_handler)
 
     # BATTLE HANDLERS:
-   
+    dp.register_message_handler(user_profile, lambda m: m.text and m.text == '🛡Defender')
+    dp.register_message_handler(user_heroe, lambda m: m.text and m.text == '⚔️Atacar')
+    dp.register_callback_query_handler(help_query, lambda m: m.text and m.text == "bosque")
+    dp.register_callback_query_handler(help_query, lambda m: m.text and m.text == "pantano")
+    dp.register_callback_query_handler(help_query, lambda m: m.text and m.text == "valle")
+    dp.register_callback_query_handler(help_query, lambda m: m.text and m.text == "foray")
+    dp.register_callback_query_handler(help_query, lambda m: m.text and m.text == "arena")
+        
+    
     # GAME HANDLERS:
 
     # GEAR HANDLERS:
+       
 
     # USER HANDLERS:
 
     dp.register_message_handler(user_profile, lambda m: m.text and m.text == '🏅Yo')
+    dp.register_message_handler(user_heroe, lambda m: m.text and m.text == '🗺Misiones')
+    dp.register_message_handler(user_heroe, lambda m: m.text and m.text == '🏰Castillo')
+    dp.register_message_handler(user_heroe, lambda m: m.text and m.text == '👥Clanes')
+    dp.register_message_handler(user_heroe, lambda m: m.text and m.text == '💬')
+    
+    
+    
     dp.register_message_handler(user_heroe, lambda m: m.text and m.text == '/heroe')
+    dp.register_message_handler(user_heroe, lambda m: m.text and m.text == '/inv')
+    dp.register_message_handler(user_heroe, lambda m: m.text and m.text == '/alm')
+    dp.register_message_handler(user_heroe, lambda m: m.text and m.text == '/efectos')
+    dp.register_message_handler(user_heroe, lambda m: m.text and m.text == '/top')
+    dp.register_message_handler(user_heroe, lambda m: m.text and m.text == '/worldtop')
+    dp.register_message_handler(user_heroe, lambda m: m.text and m.text == '/promo')
+    dp.register_message_handler(user_heroe, lambda m: m.text and m.text == '/reporte')
+    dp.register_message_handler(user_heroe, lambda m: m.text and m.text == '/level_up')
     # ...
 
 

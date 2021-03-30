@@ -21,7 +21,7 @@ def user_text(user, username):
             f"🐭 giant mouse Mousekt3 (24 lvl) 😁 /pet \n\n"
             f"Estado:\n"
             f"{user.estado}\n\n"
-            f"More: /hero")
+            f"More: /heroe")
     
 def heroe_text(user, username):
     return (f"{user.heroflag} {username} \n"
@@ -54,20 +54,21 @@ def heroe_text(user, username):
             f"📦Almacén: {user.stock} /alm")
     
     def inv_user():
-        return(f"🐭 giant mouse Mousekt3 (24 lvl) 😁 /pet \n\n")
+        return(f"🎽Equipamiento +15⚔️+64🛡\n 🎒Bag(0/15):")
 
     def stock_user():
-        return(f"🐭 giant mouse Mousekt3 (24 lvl) 😁 /pet \n\n")
+        return(f"📦Almacen (0/5000):\n\n")
 
+    def misc_user():
+        return(f"🗃Varios \n\n")
 
-
-    def ach_user():
-        return(f"🐭 giant mouse Mousekt3 (24 lvl) 😁 /pet \n\n")
-
-    def class_user():
-        return(f"🐭 giant mouse Mousekt3 (24 lvl) 😁 /pet \n\n")
-
-    def pet_user():
-        return(f"🐭 giant mouse Mousekt3 (24 lvl) 😁 /pet \n\n")
+    def alchemy_user():
+        return(f"⚗️Alquimia \n\n")
+    
+    def crafting_user():
+        return(f"⚒Elaboración \n\n")
+    
+    def equipment_user():
+        return(f"🏷Equipamiento \n\n")
     
 
