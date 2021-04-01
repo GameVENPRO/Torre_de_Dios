@@ -22,26 +22,56 @@ def INV_Kb():
     main_kb = ReplyKeyboardMarkup(resize_keyboard=True, row_width=3)
     main_kb.add(*[KeyboardButton(name) for name in['🎒Bolso','📦Recursos','🗃Varios','⚗️Alquimia','⚒Elaboración','🏷Equipamiento','⬅️Atras']])
     return main_kb
-
+#KB Castillo...
 def CASTILLO_Kb():
     prin_kb = ReplyKeyboardMarkup(resize_keyboard=True)
     prin_kb.add(*[KeyboardButton(name) for name in ['⚒Taller','🍺Taberna','🛎Subasta','🏠Tienda','⚖️Intercambio', '⬅️Atras']])
     return prin_kb
+def TALLER_Kb():
+    prin_kb = ReplyKeyboardMarkup(resize_keyboard=True)
+    prin_kb.add(*[KeyboardButton(name) for name in ['⚒Mesa de trabajo','📖Recetas','🏷Envolver', '⬅️Atras']])
+    return prin_kb
+def MESA_Kb():
+    prin_kb = ReplyKeyboardMarkup(resize_keyboard=True)
+    prin_kb.add(*[KeyboardButton(name) for name in ['⚒Craft','📖Recetas','🏷Envolver', '⬅️Atras']])
+    return prin_kb
+def TABERNA_kb():
+    kb = ReplyKeyboardMarkup(resize_keyboard=True)
+    kb.add(*[KeyboardButton(name) for name in ['🍺Tomar Cervesa','🎲Jugar a los dados','🕵️Hablar con un extraño', '⬅️Atras']])
+    return kb
 
+def PASAPORTE_kb():
+    kb = ReplyKeyboardMarkup(resize_keyboard=True)
+    kb.add(*[KeyboardButton(name) for name in ['🦈Pasaporte','🐉Pasaporte','🦌Pasaporte','🥔Pasaporte','🐺Pasaporte','🌑Pasaporte','🦅Pasaporte', '⬅️Atras']])
+    return kb
+
+def SUBASTA_kb():
+    kb = ReplyKeyboardMarkup(resize_keyboard=True)
+    kb.add(*[KeyboardButton(name) for name in ['🍺Tomar Cervesa','📖Recetas','🏷Envolver', '⬅️Atras']])
+    return kb
+def TIENDA_kb():
+    kb = ReplyKeyboardMarkup(resize_keyboard=True)
+    kb.add(*[KeyboardButton(name) for name in ['🍺Tomar Cervesa','📖Recetas','🏷Envolver', '⬅️Atras']])
+    return kb
+def INTERCAMBIO_kb():
+    kb = ReplyKeyboardMarkup(resize_keyboard=True)
+    kb.add(*[KeyboardButton(name) for name in ['🍺Tomar Cervesa','📖Recetas','🏷Envolver', '⬅️Atras']])
+    return kb
+#.......
 def GREMIO_Kb():
     prin_kb = ReplyKeyboardMarkup(resize_keyboard=True)
     prin_kb.add(*[KeyboardButton(name) for name in ['📦Stock','📋Lista','ℹ️Otros','🏕Misiones','🤝Alianza', '⬅️Atras']])
     return prin_kb
 
-# def MISIONES_kb():
-#     kb = InlineKeyboardMarkup(row_width=3)
-#         button1 = InlineKeyboardButton(text="🌲Bosque",   callback_data="bosque")
-#         button2 = InlineKeyboardButton(text="🍄Pantano", callback_data="pantano")
-#         button3 = InlineKeyboardButton(text="🏔Valle",   callback_data="valle")
-#         button4 = InlineKeyboardButton(text="🗡Foray",   callback_data="foray")
-#         button5 = InlineKeyboardButton(text="📯Arena",   callback_data="arena")
-#         kb.add(button1, button2,button3,button4,button5)
-#     return kb
+def MISIONES_kb():
+    kb = InlineKeyboardMarkup(row_width=3)
+    kb.row(InlineKeyboardButton(text="🌲Bosque",   callback_data="bosque"),
+            InlineKeyboardButton(text="🍄Pantano", callback_data="pantano"),
+            InlineKeyboardButton(text="🏔Valle",   callback_data="valle"),
+            InlineKeyboardButton(text="🗡Foray",   callback_data="foray"),
+            InlineKeyboardButton(text="📯Arena",   callback_data="arena"))
+    return kb
+
      
 def ATCK_DRAGONES_Kb():
     admin_kb = ReplyKeyboardMarkup(resize_keyboard=True)

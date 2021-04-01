@@ -14,11 +14,9 @@ from ..utils.scheduler import scheduler
 from ..utils.states import MainStates
 
 
-async def user_profile(m: Message, user: User, clean=True):
-    await m.answer(text=user_text(user, user.username), reply_markup=IDLE_Kb())
+async def user_gremio(m: Message):
+    await m.answer(text'Clan', reply_markup=IDLE_Kb())
     
-async def user_heroe(m: Message, user: User, clean=True):
-    await m.answer(text=heroe_text(user, user.username), reply_markup=IDLE_Kb())
 
     
 

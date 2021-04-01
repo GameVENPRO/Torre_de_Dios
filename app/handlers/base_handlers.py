@@ -31,6 +31,7 @@ async def heroe_commadns(m: Message):
     if m.text == '!heroe':
         await user_heroe(m, user, False)
         
+        
 async def send_message(user_id: int, text: str, disable_notification: bool = False) -> bool:
     try:
         await bot.send_message(user_id, text, disable_notification=disable_notification)

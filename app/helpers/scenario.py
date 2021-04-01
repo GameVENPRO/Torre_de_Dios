@@ -39,3 +39,8 @@ ABILITIES = {1: 'Los dioses te apoyan hoy,\n usando esta habilidad el Santísimo
 
 MOB_NAMES = ('Goblin', 'Moco', 'Demonio', 'Gnomo', 'Araña', 'Guerrero Esqueleto',
              'Caballero Esqueleto', 'Guardián Esqueleto', 'Orco', 'Esqueleto', 'Arquero Esqueleto')
+
+
+MISIONES = {'🌲Bosque 3min \n Pueden pasar muchas cosas en el bosque.\n🗡Foray 🔋🔋 \nLa incursión es una actividad peligrosa.' 
+           'Alguien puede notarlo y puede golpearlo. Pero si pasas desapercibido, conseguirás mucho botín. \n 📯Arena \n'
+           'Arena no es un lugar para débiles. Aquí luchas contra otros jugadores y si sales victorioso, adquieres una experiencia preciosa.'}
